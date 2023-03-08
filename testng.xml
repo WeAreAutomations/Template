@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+
+
+<suite name="WPT">
+
+        <test name="Dex-Trade">
+
+<!--            <parameter name="DriverName" value= "new FirefoxDriver()"/>-->
+<!--Browsers-->
+            <parameter name="preferredBrowser" value="Firefox"/>
+<!--            <parameter name="preferredBrowser" value="Chrome"/>-->
+
+            <parameter name="StartUrlLogin" value="https://site.com"/>
+
+            <groups>
+                <run>
+                    <include name="smoke"/>
+                </run>
+            </groups>
+
+
+        <classes>
+            <class name="Main.Login"/>
+            <class name="Tests.Test_1"/>
+            <class name="Tests.Test_2"/>
+<!--            <class name="Tests.Test_3"/>-->
+        </classes>
+
+
+        </test>
+
+
+</suite>
