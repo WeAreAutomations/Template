@@ -1,0 +1,280 @@
+-----------------------------------------------------------------------------
+SCRIPTS
+------------------------------------------------------------------------------
+Скрипт для запуска определенного XML файла из проэкта в Дженкинсе
+*** Jenkins POM.XML set ***
+clean compile test -DxmlSuiteFileName=testngSt1.xml
+--------------------------------------------------------------------------------
+Управление окнами
+ArrayList<String> newTab = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(newTab.get(0));
+
+// Закрытие лишнего/второго таба
+try {
+            Thread.sleep(2000);
+            driver.close();
+            driver.switchTo().window(newTab.get(0));
+        } catch (NoSuchWindowException ignored){
+            System.out.println("Window ignored");
+        }
+-----------------------------------------------------------------------------
+Управление окнами
+ //Присваиваем стринговые значения табам, для перехода по ним
+            Set<String> windows = driver.getWindowHandles();
+            Iterator<String> it = windows.iterator();
+            String parent = it.next();
+            String child = it.next();
+            driver.switchTo().window(child);
+Преход на предыдущую страницу
+driver.switchTo().window(Keys.ALT.ARROW_LEFT);
+-------------------------------------------------------------------------------
+Управление Алертами
+driver.switchTo().alert().accept();
+
+------------------------------------------------------------------------------
+Возврат в предыдущее окно
+//            Actions prevPg = new Actions(driver);
+//            prevPg.sendKeys(Keys.chord(B)).perform();
+
+----------------------------------------------------------------------------------
+Задержка на решение капчи
+Captcha bypass
+
+ try {
+            //Ожидаем появление капчи, и в случае когда она появилась решаем ее не более  3 минут
+           WebElement instExchBtn = (new WebDriverWait(driver, ofSeconds(180)))
+                   .until(ExpectedConditions
+                           .presenceOfElementLocated(By.xpath("//button[contains(text(),'Instant exchange')]")));
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+Не явное ожидание
+driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); //makes driver object to wait for 10 seconds to wait implicitly
+
+Ожидание до тех пор пока элемент не станет видимым
+WebDriverWait wait = new WebDriverWait(driver, 10);  
+WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("someid"))); // give an element locator, such a way that you can confirm that visibility of that elements represents the complete loading of the page.
+Явное ожидание
+Thread.sleep(2000);
+----------------------------------------------------------------------------------------
+Работа через джава скрипт
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].click()", pair);
+----------------------------------------------------------------------
+Использование метода Экшен
+Actions action = new Actions(driver);
+          action.moveToElement(market).perform();
+---------------------------------------------------------------------
+Работа с методом сканер
+Scanner sc = new Scanner(totalUsdt);
+Scanner sc = new Scanner(system.in); то что вводится с клавиатуры
+Scanner sc = new Scanner(file); взятие файла
+---------------------------------------------------------------------------
+Читаем из буфера памяти
+//            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+//
+//            Object data = clipboard.getData(DataFlavor.stringFlavor);
+-------------------------------------------------------------------------------------------
+https://otus.ru/nest/post/1042/
+
+1. Преобразование int to String в Java:
+   int i = 53;
+   String str = Integer.toString(i);
+   System.out.println(str);   
+
+2. Преобразование double to String в Java:
+   double  i = 31.6e10;
+   String str = Double.toString(i);
+   System.out.println(str);  
+
+String coinValue = "21.5654322";
+        double dblCoinValue = Double.parseDouble(coinValue);
+        System.out.println(dblCoinValue);
+
+3. Преобразуем long to String в Java:
+   long  i = 3422222;
+   String str = Long.toString(i);
+   System.out.println(str);         
+
+4. Преобразуем float to String в Java:
+   float  i = 3.98f;
+   String str = Float.toString(i);
+   System.out.println(str);      
+
+5. Float FsReceiveAmountField = Float.parseFloat(sReceiveAmountField);
+--------------------------------------------------------------------------------------------------
+В качестве первого способа мы рассмотрим округление double:
+
+double value = 34.766674;
+String result = String.format("%.3f",value);
+System.out.print(result);//  34,767
+
+----------------------------------------------------------------------------------------------
+https://ru.stackoverflow.com/questions/453691/%D0%9A%D0%B0%D0%BA-%D0%BE%D0%B1%D1%80%D0%B5%D0%B7%D0%B0%D1%82%D1%8C-%D1%81%D1%82%D1%80%D0%BE%D0%BA%D1%83-%D0%B4%D0%BE-%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE-%D0%BA%D0%BE%D0%BB%D0%B8%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%B0-%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB%D0%BE%D0%B2?newreg=2008d66e777c4176baf336c29a70dbc9
+
+//        String assertCoin = getCurrUrl.substring(0,34)+coinName+"BTC";
+//        System.out.println(assertCoin);
+Обрезание строк
+String subStr = mawa.substring(0, 25);
+System.out.println(subStr);
+
+Применение метода замены
+String clearVolDone = strForReplace.replace(" BTC", "");
+
+https://javarush.ru/groups/posts/2773-okruglenie-chisel-v-java
+
+---------------------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------
+
+ Thread.sleep(2000);
+            //Находим доску продажа/торговля и верифицируем ее наличие
+            try {
+                boolean qr = driver.findElement(By.xpath
+                        ("//div[@class='action__container']//img[@class='lazyLoad isLoaded']")).isDisplayed();
+
+                if (qr) {
+                    System.out.println("QR code is displayed");
+                }
+            } catch (NoSuchElementException e)
+            {
+                System.out.println("QR code is not displayed");
+            }
+---------------------------------------------------------------------------------------------------
+*** Theme and Language changes ***
+
+Thread.sleep(1000);
+        WebElement theme = driver.findElement(By.xpath("//button[@class='change-theme__button']"));
+        theme.click();
+
+        Thread.sleep(2000);
+        WebElement language = driver.findElement(By.xpath("//span[@class='current__name']"));
+        Actions action = new Actions(driver);
+        action.moveToElement(language).perform();
+
+        Thread.sleep(2000);
+        WebElement romana = driver.findElement(By.xpath("//a[@href='/ro/spot/trading/BTCUSDT']"));
+        romana.click();
+
+------------------------------------------------------------------------------------------------------------
+What is the difference between driver.get() and driver.navigate().to() in Selenium WebDriver?
+https://www.youtube.com/watch?v=VU1yut6JEHs
+
+----------------------------------------------------------------------------------------------------------------
+Работа с датами
+String sData2 = dataList.get(56).getText();
+        System.out.println(sData2);
+        SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        System.out.println(dateFormat2.parse(sData2));
+---------------------------------------------------------------------------------------------------------------
+Написание локатора вне метода
+public void allHeader() {driver.findElement(By.xpath("//button[contains(text(),'All')]")).click();}
+
+-----------------------------------------------------------------------------------------------------
+
+Class<? extends WebElement> SfavoriteStar = favoriteStar.get(lastElement).getClass();
+
+----------------------------------------------------------------------------------------------------
+Выбор последнего элемента из списка
+
+List<WebElement> favoriteStar = driver.findElements(By.xpath("//button[@class='favorite-star active']"));
+
+        int lastElement = favoriteStar.size()-1;
+------------------------------------------------------------------------------------------------------------------
+Build Jenkins
+clean compile test -DxmlSuiteFileName=testngBeta.xml
+
+--------------------------------------------------------------------------------------------------------------------
+Работа с ховером
+ //Считываем цвет кнопки - Background color
+        String BackGroundClr = logBtn.getCssValue("background-color");
+        String HexBackGroundClr = Color.fromString(BackGroundClr).asHex();
+        System.out.println(HexBackGroundClr);
+
+ //Добавлен сравнение Background color кнопки при наведении на кнопку курсора
+            Assert.assertEquals(HexBackGroundClr, "#000000");
+-----------------------------------------------------------------------------------------------
+Сортировка
+ArrayList<Double> numbers = new ArrayList<>();
+        numbers.add(1.0);
+        numbers.add(77.0);
+        numbers.add(6.0);
+        Collections.sort(numbers);
+----------------------------------------------------------------------------------------------
+Как пройтись по списку вебэлементов, и верифицировать, что в каждом взятом тексте из вебелемента присутствует Текс BTC.(allBtcCoins - список веб элементов)
+boolean foundBtc = false;
+        for (WebElement coin : allBtcCoins) {
+            String coinText = coin.getText();
+            System.out.println(coinText);
+            if (coinText.contains("BTC")) {
+                foundBtc = true;
+                break;
+            }
+        }
+        Assert.assertTrue(foundBtc, "Text BTC not Found");
+--------------------------------------------------------------------------------
+driver.get("http://www.google.com");
+WebElement ele = driver.findElement(By.id("hplogo"));
+
+// Get entire page screenshot
+File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+BufferedImage  fullImg = ImageIO.read(screenshot);
+
+// Get the location of element on the page
+Point point = ele.getLocation();
+
+// Get width and height of the element
+int eleWidth = ele.getSize().getWidth();
+int eleHeight = ele.getSize().getHeight();
+
+// Crop the entire page screenshot to get only element screenshot
+BufferedImage eleScreenshot= fullImg.getSubimage(point.getX(), point.getY(),
+    eleWidth, eleHeight);
+ImageIO.write(eleScreenshot, "png", screenshot);
+-------------------------------------------------------------------------------------------
+
+// Проскролить до элемента
+WebElement Element =  driver.findElement(By.xpath("//*[contains(@search-item-predicate-value,'test_object')]"));
+jse.executeScript("arguments[0].scrollIntoView();", Element);//"window.scrollTo(0, 0);" scroll UP
+
+// Проскролить страницу на определенное количество пикселей
+JavascriptExecutor js = (JavascriptExecutor) driver;
+js.executeScript("window.scrollBy(0,500)");
+-------------------------------------------------------------------------------------------
+public static boolean scrollWebTable(String dom, String toSearch, String direction) {
+        driver.findElement(By.xpath(dom)).click();
+        int flag = 0;
+        int count = 0;
+        do {
+            try {
+                driver.findElement(By.xpath(dom)).click();
+                WebElement ele = Shared.driver.findElement(By.xpath(toSearch));
+                flag = 1;
+            } catch (Throwable e) {
+                switch (direction.toLowerCase()) {
+                case "right":
+                    driver.findElement(By.xpath(dom)).sendKeys(Keys.RIGHT);
+                    break;
+                case "left":
+                    driver.findElement(By.xpath(dom)).sendKeys(Keys.LEFT);
+                    break;
+                case "down":
+                default:
+                    driver.findElement(By.xpath(dom)).sendKeys(Keys.PAGE_DOWN);
+                    break;
+                case "up":
+                    driver.findElement(By.xpath(dom)).sendKeys(Keys.PAGE_UP);
+                    break;
+                }
+            }
+        } while ((flag == 0) || ((++count) == 250));
+        return (flag == 1);
+    }
+
+// Copy the element screenshot to disk
+File screenshotLocation = new File("C:\\images\\GoogleLogo_screenshot.png");
+FileUtils.copyFile(screenshot, screenshotLocation);
+===============================================
+
